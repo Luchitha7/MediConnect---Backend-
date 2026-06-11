@@ -1,0 +1,17 @@
+# Maven build output
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# OS junk
+.DS_Store
+
+# Local-only config that may contain secrets/passwords (never commit)
+application-local.properties
+src/main/resources/application-local.properties
+
+# Logs
+*.log

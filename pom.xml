@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============================================================================
+  pom.xml  =  "Project Object Model"
+  ============================================================================
+  This is Maven's build file. It does three jobs:
+    1. Declares WHAT libraries (dependencies) the project needs.
+    2. Declares HOW to build/run the project (plugins).
+    3. Declares project identity (group, artifact, version).
+
+  Maven downloads every dependency listed here from the internet (into a
+  local cache at ~/.m2) so you never copy .jar files by hand.
+  ============================================================================
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+      The "parent" gives us Spring Boot's curated set of dependency VERSIONS.
+      Because of this, when we add a starter below we don't write a version -
+      Spring Boot picks a version that is known to work with all the others.
+      This is one of Spring Boot's biggest conveniences.
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.5</version>
+        <relativePath/> <!-- look the parent up from the internet, not a local folder -->
+    </parent>
+
+    <!-- ===== Project identity (how this artifact is named) ===== -->
+    <groupId>com.mediconnect</groupId>
+    <artifactId>backend</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>mediconnect-backend</name>
+    <description>MediConnect backend - rebuilt cleanly to learn Spring Boot</description>
+
+    <properties>
+        <!-- Compile against Java 17 (a Long-Term-Support release). -->
+        <java.version>17</java.version>
+    </properties>
+
+    <dependencies>
+        <!--
+          STARTER = a bundle of related libraries for one job.
+          spring-boot-starter-web brings in:
+            - Spring MVC (lets us write @RestController endpoints)
+            - an embedded Tomcat web server (so the app runs standalone)
+            - Jackson (auto-converts Java objects <-> JSON)
+          This single line is what makes our app a web server.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--
+          Test starter: JUnit + Spring's test helpers.
+          'test' scope = only on the classpath while testing, not at runtime.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+              This plugin gives us the 'spring-boot:run' command and packages
+              the app into a single runnable .jar ("fat jar") with `mvn package`.
+            -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
