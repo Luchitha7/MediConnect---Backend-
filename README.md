@@ -1,4 +1,4 @@
-# MediConnect Backend (clean rebuild)
+# MediConnect Backend (V2.0)
 
 A Spring Boot backend for MediConnect, rebuilt from scratch to **learn the
 concepts** clearly. It connects to the existing React frontend by matching the
